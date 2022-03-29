@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BELL-TIME</string>
+    <string name="app_name">Bell Time</string>
     <string name="title_timer">Таймер</string>
     <string name="title_schedule">Расписание</string>
 
@@ -10,4 +10,11 @@
     <string name="string_friday">Пятница</string>
     <string name="string_saturday">Суббота</string>
     <string name="string_sunday">Воскресенье</string>
+
+    <string name="string_name_of_the_lesson">Название занятия</string>
+    <string name="string_add">Добавить</string>
+    <string name="string_cancel">Отмена</string>
+    <string name="string_teacher_name">Имя преподавателя</string>
+    <string name="string_room_number">Номер кабинета</string>
+
 </resources>

@@ -7,20 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import com.allaber.belltime.database.App;
 import com.allaber.belltime.database.AppDatabase;
-import com.allaber.belltime.database.LessonDAO;
-import com.allaber.belltime.database.models.Lesson;
 import com.allaber.belltime.databinding.FragmentScheduleBinding;
-import com.allaber.belltime.utils.Utils;
+import com.allaber.belltime.dialog.DialogAddingLesson;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class ScheduleFragment extends Fragment {
 
@@ -28,13 +23,9 @@ public class ScheduleFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ScheduleViewModel scheduleViewModel =
-                new ViewModelProvider(this).get(ScheduleViewModel.class);
 
         binding = FragmentScheduleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-
-
 
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getContext(), getChildFragmentManager());;
         final ViewPager viewPager = binding.viewPager;
@@ -44,24 +35,18 @@ public class ScheduleFragment extends Fragment {
 
         FloatingActionButton fab = binding.floatingActionButton;
         fab.setOnClickListener(view -> AppDatabase.databaseWriteExecutor.execute(() -> {
-
-            Lesson lesson = new Lesson();
-            lesson.setLessonName("Русский");
-            lesson.setStartTime(String.valueOf(new Date()));
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.MONTH, 1);
-            lesson.setEndTime(String.valueOf(cal.getTime()));
-            int currentItem = viewPager.getCurrentItem() + 1;
-            lesson.setDayOfWeek(Utils.getDayOfWeekByIndex(currentItem));
-            lesson.setRoomNumber("402");
-            lesson.setTeacherName("Альберт");
-
-            LessonDAO lessonDAO = ((App) getContext().getApplicationContext()).getDatabase().lessonDAO();
-            lessonDAO.insert(lesson);
-
+            showDialogAddingLesson(viewPager.getCurrentItem() + 1);
         }));
 
         return root;
+    }
+
+    private void showDialogAddingLesson(int dayOfWeek){
+        DialogAddingLesson dialogAddingLesson = new DialogAddingLesson(dayOfWeek);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        dialogAddingLesson.show(transaction, "DialogAddingLesson");
+
     }
 
     @Override

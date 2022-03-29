@@ -14,16 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.allaber.belltime.database.App;
-import com.allaber.belltime.database.AppDatabase;
-import com.allaber.belltime.database.LessonDAO;
-import com.allaber.belltime.database.models.Lesson;
 import com.allaber.belltime.databinding.FragmentLessonsBinding;
-import com.allaber.belltime.utils.Utils;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class WeekFragment extends Fragment {
 
@@ -31,6 +22,7 @@ public class WeekFragment extends Fragment {
     private FragmentLessonsBinding binding;
     private int index = 1;
     private LessonsAdapter lessonsAdapter;
+    private RecyclerView recyclerView;
 
     public static WeekFragment newInstance(int index) {
         WeekFragment fragment = new WeekFragment();
@@ -54,7 +46,6 @@ public class WeekFragment extends Fragment {
     private void subscribeToLessons() {
         weekViewModel.getLessons(getContext(), index).observe(getViewLifecycleOwner(), lessons -> {
             lessonsAdapter = new LessonsAdapter(lessons);
-            RecyclerView recyclerView = binding.recyclerView;
             recyclerView.setAdapter(lessonsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         });
@@ -64,6 +55,7 @@ public class WeekFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentLessonsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        recyclerView = binding.recyclerView;
         return root;
     }
 

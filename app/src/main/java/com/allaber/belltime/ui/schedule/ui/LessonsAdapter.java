@@ -20,7 +20,6 @@ public class LessonsAdapter extends
 
     private List<Lesson> mLesson;
 
-    // Pass in the contact array into the constructor
     public LessonsAdapter(List<Lesson> contacts) {
         mLesson = contacts;
     }
@@ -35,11 +34,11 @@ public class LessonsAdapter extends
 
         public ViewHolder(View itemView) {
             super(itemView);
-            startTime = (TextView) itemView.findViewById(R.id.start_time);
-            endTime = (TextView) itemView.findViewById(R.id.end_time);
-            lessonName = (TextView) itemView.findViewById(R.id.lesson_name);
-            roomNumber = (TextView) itemView.findViewById(R.id.room_number);
-            teacherName = (TextView) itemView.findViewById(R.id.teacher_name);
+            startTime = itemView.findViewById(R.id.start_time);
+            endTime = itemView.findViewById(R.id.end_time);
+            lessonName = itemView.findViewById(R.id.lesson_name);
+            roomNumber = itemView.findViewById(R.id.room_number);
+            teacherName = itemView.findViewById(R.id.teacher_name);
         }
     }
 
@@ -58,11 +57,8 @@ public class LessonsAdapter extends
 
         Lesson lesson = mLesson.get(position);
 
-//        holder.startTime.setText(lesson.getStartTime());
-//        holder.endTime.setText(lesson.getEndTime());
-
-        holder.startTime.setText("08:30");
-        holder.endTime.setText("10:00");
+        holder.startTime.setText(lesson.getStartTime());
+        holder.endTime.setText(lesson.getEndTime());
 
         holder.lessonName.setText(lesson.getLessonName());
         holder.roomNumber.setText(lesson.getRoomNumber());
