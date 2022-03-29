@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">BELL-TIME</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_timer">Таймер</string>
+    <string name="title_schedule">Расписание</string>
+
+    <string name="string_monday">Понедельник</string>
+    <string name="string_tuesday">Вторник</string>
+    <string name="string_wednesday">Среда</string>
+    <string name="string_thursday">Четверг</string>
+    <string name="string_friday">Пятница</string>
+    <string name="string_saturday">Суббота</string>
+    <string name="string_sunday">Воскресенье</string>
 </resources>
