@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Lesson {
+public class Lesson implements Comparable<Lesson>{
 
     @PrimaryKey(autoGenerate = true)
     public long id;
@@ -82,5 +82,12 @@ public class Lesson {
 
     public void setEndTime(long endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public int compareTo(Lesson u) {
+        Long startTime = getStartTime();
+        Long startTimeU = u.getStartTime();
+        return startTime.compareTo(startTimeU);
     }
 }

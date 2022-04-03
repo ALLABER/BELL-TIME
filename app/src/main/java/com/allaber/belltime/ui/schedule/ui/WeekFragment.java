@@ -14,7 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.allaber.belltime.database.models.Lesson;
 import com.allaber.belltime.databinding.FragmentLessonsBinding;
+
+import java.util.Collections;
+import java.util.List;
 
 public class WeekFragment extends Fragment {
 
@@ -45,10 +49,15 @@ public class WeekFragment extends Fragment {
 
     private void subscribeToLessons() {
         weekViewModel.getLessons(getContext(), index).observe(getViewLifecycleOwner(), lessons -> {
-            lessonsAdapter = new LessonsAdapter(lessons);
+            lessonsAdapter = new LessonsAdapter(sortByLessonStartTime(lessons));
             recyclerView.setAdapter(lessonsAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         });
+    }
+
+    private List<Lesson> sortByLessonStartTime(List<Lesson> data){
+        Collections.sort(data, (l1, l2) -> l1.compareTo(l2));
+        return data;
     }
 
     @Override
