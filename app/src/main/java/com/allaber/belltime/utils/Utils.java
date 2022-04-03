@@ -1,5 +1,7 @@
 package com.allaber.belltime.utils;
 
+import java.sql.Timestamp;
+
 public class Utils {
 
     public static String getDayOfWeekByIndex(int value) {
@@ -28,5 +30,18 @@ public class Utils {
                 break;
         }
         return dayOfWeek;
+    }
+
+    public static long convertTimeToLong(String time) {
+        String formatter = "1998-12-03 " + time + ":00";
+        Timestamp timestamp = Timestamp.valueOf(formatter);
+        return timestamp.getTime();
+    }
+
+    public static String convertLongToTime(long time) {
+        Timestamp timestamp = new Timestamp(time);
+        String fullTime = timestamp.toString();
+        String timeStr = fullTime.substring(11, 16);
+        return timeStr;
     }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.allaber.belltime.R;
 import com.allaber.belltime.database.models.Lesson;
+import com.allaber.belltime.utils.Utils;
 
 import java.util.List;
 
@@ -57,8 +58,8 @@ public class LessonsAdapter extends
 
         Lesson lesson = mLesson.get(position);
 
-        holder.startTime.setText(lesson.getStartTime());
-        holder.endTime.setText(lesson.getEndTime());
+        holder.startTime.setText(Utils.convertLongToTime(lesson.getStartTime()));
+        holder.endTime.setText(Utils.convertLongToTime(lesson.getEndTime()));
 
         holder.lessonName.setText(lesson.getLessonName());
         holder.roomNumber.setText(lesson.getRoomNumber());

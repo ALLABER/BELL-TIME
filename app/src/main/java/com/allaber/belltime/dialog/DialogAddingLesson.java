@@ -19,6 +19,8 @@ import com.allaber.belltime.database.LessonDAO;
 import com.allaber.belltime.database.models.Lesson;
 import com.allaber.belltime.utils.Utils;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -115,10 +117,10 @@ public class DialogAddingLesson extends DialogFragment implements View.OnClickLi
         lesson.setTeacherName(teacherName);
 
         String startTime = buttonStartTime.getText().toString();
-        lesson.setStartTime(startTime);
+        lesson.setStartTime(Utils.convertTimeToLong(startTime));
 
         String endTime = buttonEndTime.getText().toString();
-        lesson.setEndTime(endTime);
+        lesson.setEndTime(Utils.convertTimeToLong(endTime));
 
         lesson.setDayOfWeek(Utils.getDayOfWeekByIndex(dayOfWeek));
         return lesson;

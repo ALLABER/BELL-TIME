@@ -13,13 +13,13 @@ public class Lesson {
     private String roomNumber;
     private String teacherName;
     private String dayOfWeek;
-    private String startTime;
-    private String endTime;
+    private long startTime;
+    private long endTime;
 
     public Lesson() {
     }
 
-    public Lesson(String lessonName, String roomNumber, String teacherName, String dayOfWeek, String startTime, String endTime) {
+    public Lesson(String lessonName, String roomNumber, String teacherName, String dayOfWeek, long startTime, long endTime) {
         this.lessonName = lessonName;
         this.roomNumber = roomNumber;
         this.teacherName = teacherName;
@@ -68,19 +68,19 @@ public class Lesson {
         this.dayOfWeek = dayOfWeek;
     }
 
-    public String getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
+    public long getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(long endTime) {
         this.endTime = endTime;
     }
 }
